@@ -4,58 +4,501 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>My-Portfolio</title>
-    <link rel="stylesheet" href="style.css">
-    <link rel="stylesheet" href="https://unpkg.com/boxicons@2.1.4/" rel='stylesheet'>"> 
+
+    <!-- Font Awesome Icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.2.0/css/all.min.css">
+
+    <style>
+        *{
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Poppins', sans-serif;
+            text-decoration: none;
+            list-style: none;
+        }
+        
+        .header {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            padding: 16px 12%;
+            background: #746868;
+            backdrop-filter: blur(10px);
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            z-index: 100;
+        }
+
+        .Logo {
+            font-size: 30px;
+            color: white;
+            font-weight: 600;
+            transition: 0.3s ease;
+        }
+
+        span {
+            color: orangered;
+        }
+
+        .navbar a {
+            font-size: 18px;
+            color: white;
+            font-weight: 500;
+            margin: 0 20px;
+            border-bottom: 3px solid transparent;
+            transition: 0.3s ease;
+        }
+
+        .navbar a:hover,
+        .navbar a.active {
+            color: orangered;
+            border-bottom: 3px solid orangered;
+        }
+
+        .contact {
+            padding: 10px 28px;
+            background-color: white;
+            color: black;
+            border: 2px solid transparent;
+            border-radius: 8px;
+            font-size: 16px;
+            letter-spacing: 1px;
+            font-weight: 600;
+            transition: 0.3s ease;
+        }
+
+        .contact:hover {
+            background-color: orangered;
+            box-shadow: 0 0 25px orangered;
+            color: white;
+        }
+
+        .home {
+            width: 100%;
+            min-height: 100vh;
+            background-color: rgb(241, 241, 241);
+            display: flex;
+            align-items: center;
+            gap: 7em;
+            padding: 30px 12% 0;
+        }
+
+        .home-content h3 {
+            font-size: 42px;
+        }
+
+        .home-content h1 {
+            font-size: 62px;
+            line-height: 1.2;
+        }
+
+        .home-content p {
+            font-size: 18px;
+            margin: 25px 0 30px;
+        }
+
+        .btn-box {
+            width: 345px;
+            display: flex;
+            gap: 2em;
+        }
+
+        .btn-1, .btn-2 {
+            padding: 15px 28px;
+            border-radius: 8px;
+            font-size: 18px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: 0.3s ease;
+        }
+
+        .btn-1 {
+            background-color: black;
+            color: white;
+            border: 2px solid transparent;
+        }
+
+        .btn-1:hover {
+            background-color: white;
+            color: black;
+            border: 2px solid black;
+        }
+
+        .btn-2 {
+            background-color: orangered;
+            color: white;
+            border: 2px solid black;
+        }
+
+        .btn-2:hover {
+            background-color: white;
+            color: orangered;
+        }
+
+        .img-box img {
+            border-radius: 26%;
+            width: 650px;
+        }
+
+        /* ---------- About ---------- */
+        .about {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            padding: 12% 8%;
+            gap: 10em;
+            background: black;
+        }
+
+        .about-img img {
+            width: 550px;
+            border-radius: 50%;
+            box-shadow: 0 0 25px orangered, 0 0 50px orangered;
+        }
+
+        .about-content h2,
+        .about-content h3,
+        .about-content p {
+            color: white;
+        }
+
+        .about-content h2 {
+            font-size: 42px;
+        }
+
+        .about-content h3 {
+            font-size: 62px;
+        }
+
+        .about-content p {
+            font-size: 20px;
+            margin: 2em 0;
+        }
+
+        /* ---------- Services ---------- */
+        .services {
+            padding: 8% 12%;
+            background: rgb(241, 241, 241);
+            text-align: center;
+        }
+
+        .services h2 {
+            font-size: 42px;
+            margin-bottom: 40px;
+        }
+
+        .service-boxes {
+            display: flex;
+            justify-content: center;
+            gap: 3em;
+            flex-wrap: wrap;
+        }
+
+        .service-card {
+            background: white;
+            padding: 30px;
+            width: 300px;
+            border-radius: 12px;
+            box-shadow: 0 0 20px rgba(0,0,0,0.1);
+            transition: 0.3s ease;
+        }
+
+        .service-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 0 25px orangered;
+        }
+
+        .service-card i {
+            font-size: 40px;
+            margin-bottom: 20px;
+            color: orangered;
+        }
+
+        .service-card h3 {
+            font-size: 24px;
+            margin-bottom: 10px;
+        }
+
+        /* ---------- Experience ---------- */
+        .experience {
+            padding: 8% 12%;
+            background: black;
+            color: white;
+        }
+
+        .experience h2 {
+            text-align: center;
+            font-size: 42px;
+            margin-bottom: 40px;
+        }
+
+        .exp-list {
+            display: flex;
+            flex-direction: column;
+            gap: 20px;
+        }
+
+        .exp-item {
+            background: #1a1a1a;
+            padding: 20px;
+            border-left: 5px solid orangered;
+            border-radius: 8px;
+        }
+
+        /* ---------- Projects ---------- */
+        .projects {
+            padding: 8% 12%;
+            background: rgb(241, 241, 241);
+        }
+
+        .projects h2 {
+            text-align: center;
+            font-size: 42px;
+            margin-bottom: 40px;
+        }
+
+        .project-grid {
+            display: flex;
+            gap: 2em;
+            flex-wrap: wrap;
+            justify-content: center;
+        }
+
+        .project-card {
+            background: white;
+            padding: 20px;
+            width: 300px;
+            border-radius: 10px;
+            box-shadow: 0 0 20px rgba(0,0,0,0.1);
+            transition: 0.3s ease;
+        }
+
+        .project-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 0 25px orangered;
+        }
+
+        /* ---------- Contact ---------- */
+        .contact-form h2 {
+            text-align: center;
+            font-size: 36px;
+            margin-top: 3em;
+        }
+
+        .contact-form form {
+            max-width: 50em;
+            margin: 1rem auto 3em;
+            text-align: center;
+        }
+
+        .input-box {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+        }
+
+        .contact-form input,
+        .contact-form textarea {
+            width: 100%;
+            padding: 1.5em;
+            background: rgb(241, 241, 241);
+            margin: 1rem 0;
+            border-radius: .8rem;
+            font-size: 18px;
+        }
+
+        .contact-form input[type="submit"] {
+            background-color: black !important;
+            color: white !important;
+            border: 2px solid transparent !important;
+            cursor: pointer;
+            font-weight: 600;
+        }
+
+        .contact-form input[type="submit"]:hover {
+            background-color: white !important;
+            color: black !important;
+            border: 2px solid black !important;
+        }
+
+        /* ---------- Footer ---------- */
+        .footer {
+            background: black;
+            padding: 40px 0;
+        }
+
+        .footer .social {
+            text-align: center;
+            padding-bottom: 25px;
+        }
+
+        .footer .social a {
+            font-size: 24px;
+            color: white;
+            border: 2px solid orangered;
+            width: 40px;
+            height: 40px;
+            line-height: 38px;
+            display: inline-block;
+            border-radius: 50%;
+            margin: 0 8px;
+            transition: 0.3s ease;
+        }
+
+        .footer .social a:hover {
+            transform: scale(1.2) translateY(-10px);
+            color: orangered;
+        }
+
+        .footer ul {
+            text-align: center;
+            margin: 0;
+        }
+
+        .footer ul li {
+            display: inline-block;
+            padding: 0 15px;
+        }
+
+        .footer ul a {
+            color: white;
+            font-size: 18px;
+            transition: 0.3s ease;
+        }
+
+        .footer ul a:hover {
+            border-bottom: 3px solid orangered;
+        }
+
+        .footer .copyright {
+            text-align: center;
+            color: white;
+            font-size: 12px;
+        }
+    </style>
+
 </head>
+
 <body>
+
     <header class="header">
         <a href="#" class="Logo"><span>Ankur</span>_Nayak</a>
         <nav class="navbar">
-            <a href="#" class="active" >Portfolio</a>
-            <a href="#" >Services</a>
-            <a href="#" >Experience</a>
-            <a href="#" >Projects</a>
-            <a href="#" >Experiance</a>
+            <a href="#home" class="active">Portfolio</a>
+            <a href="#services">Services</a>
+            <a href="#experience">Experience</a>
+            <a href="#projects">Projects</a>
+            <a href="#contact">Contact</a>
         </nav>
-        <a href="#" class="contact">Contact Me</a>
+        <a href="#contact" class="contact">Contact Me</a>
     </header>
 
-    <section class="home">
+    <!-- HOME -->
+    <section class="home" id="home">
         <div class="home-content">
             <h3>Hi..</h3>
-
-            <h1>I'm <span>Ankur Nayak<br></span>a Full Stack 
-            Web Developer</h1>
-
-            <p>I'm a passionate Full Stack Web Developer dedicated to crafting high-quality, innovative digital solutions...</p>
+            <h1>I'm <span>Ankur Nayak</span><br>a Full Stack Web Developer</h1>
+            <p>I'm a passionate Full Stack Web Developer dedicated to crafting high-quality, innovative digital solutions. With a strong foundation in both front-end and back-end development, I thrive on creating seamless user experiences and robust functionalities. My expertise spans across a wide range of technologies, allowing me to tackle diverse challenges with creativity and efficiency. From designing responsive interfaces to optimizing database performance, I am committed to delivering exceptional results that exceed expectations. With a keen eye for detail and a drive for continuous learning, I am always eager to take on new projects and contribute to the ever-evolving landscape of web development.</p>
             <div class="btn-box">
                 <button class="btn-1">Hire Me</button>
                 <button class="btn-2">Experience</button>
             </div>
         </div>
         <div class="img-box">
-            <img src="img1.jpg" alt="">
+            <img src="img2.jpg" alt="">
         </div>
     </section>
 
-    <section class="about">
+    <!-- ABOUT -->
+    <section class="about" id="about">
         <div class="about-img">
-            <img src="img2.jpg" alt="">
+            <img src="img.jpg" alt="">
         </div>
-
         <div class="about-content">
             <h2 class="heading">About <span>Me</span></h2>
             <h3>Full Stack <span>Web Developer</span></h3>
-            <p>I'm Ankur Nayak, a passionate Full Stack Web Developer...</p>
-            <a href="#" class="btn-2">Experience</a>
-        </div>    
+            <p>I'm a passionate Full Stack Web Developer dedicated to crafting high-quality, innovative digital solutions. With a strong foundation in both front-end and back-end development, I thrive on creating seamless user experiences and robust functionalities. My expertise spans across a wide range of technologies, allowing me to tackle diverse challenges with creativity and efficiency. From designing responsive interfaces to optimizing database performance, I am committed to delivering exceptional results that exceed expectations. With a keen eye for detail and a drive for continuous learning, I am always eager to take on new projects and contribute to the ever-evolving landscape of web development.</p>
+            <a href="#experience" class="btn-2">Experience</a>
+        </div>
     </section>
 
-    <section class="contact-form">
-        <h2 class="heading">Contact <span>Me</span></h2>
-        
-        <form id="contactForm">
+    <!-- SERVICES -->
+    <section class="services" id="services">
+        <h2>My <span>Services</span></h2>
 
+        <div class="service-boxes">
+            <div class="service-card">
+                <i class="fas fa-laptop-code"></i>
+                <h3>Web Development</h3>
+                <p>I build responsive and modern websites using latest technologies.</p>
+            </div>
+
+            <div class="service-card">
+                <i class="fas fa-mobile-alt"></i>
+                <h3>App Development</h3>
+                <p>Creating powerful and user-friendly Android applications.</p>
+            </div>
+
+            <div class="service-card">
+                <i class="fas fa-code"></i>
+                <h3>Backend Development</h3>
+                <p>API development, authentication, and database integration.</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- EXPERIENCE -->
+    <section class="experience" id="experience">
+        <h2>My <span>Experience</span></h2>
+
+        <div class="exp-list">
+            <div class="exp-item">
+                <h3>Frontend Developer at XYZ</h3>
+                <p>Worked with HTML, CSS, JS, React, UI/UX improvements, etc.</p>
+            </div>
+
+            <div class="exp-item">
+                <h3>Backend Intern at ABC</h3>
+                <p>Developed REST APIs, handled databases, authentication, etc.</p>
+            </div>
+
+            <div class="exp-item">
+                <h3>Freelancer</h3>
+                <p>Built websites, portfolios, and small business solutions.</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- PROJECTS -->
+    <section class="projects" id="projects">
+        <h2>My <span>Projects</span></h2>
+
+        <div class="project-grid">
+            <div class="project-card">
+                <h3>Portfolio Website</h3>
+                <p>A complete responsive portfolio built using HTML, CSS, JS.</p>
+            </div>
+
+            <div class="project-card">
+                <h3>E-commerce Website</h3>
+                <p>A shopping website with cart, login, and admin panel.</p>
+            </div>
+
+            <div class="project-card">
+                <h3>Weather App</h3>
+                <p>Real-time weather detection using API integration.</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- CONTACT -->
+    <section class="contact-form" id="contact">
+        <h2 class="heading">Contact <span>Me</span></h2>
+
+        <form id="contactForm">
             <div class="input-box">
                 <input type="text" placeholder="Full Name">
                 <input type="text" placeholder="Email">
@@ -67,24 +510,25 @@
             </div>
 
             <textarea cols="30" rows="10" placeholder="Your Message"></textarea>
-            <input type="submit" value="Send Message" class="btn-1">
 
+            <input type="submit" value="Send Message" class="btn-1">
         </form>
     </section>
 
+    <!-- FOOTER -->
     <footer class="footer">
         <div class="social">
-            <a href="#"><i class='bx bxl-facebook-circle'></i></a>
-            <a href="#"><i class='bx bxl-linkedin-square'></i></a>
-            <a href="#"><i class='bx bxl-twitter'></i></a>
-            <a href="#"><i class='bx bxl-instagram'></i></a>
+            <a href="#"><i class="fab fa-facebook"></i></a>
+            <a href="#"><i class="fab fa-linkedin"></i></a>
+            <a href="#"><i class="fab fa-twitter"></i></a>
+            <a href="#"><i class="fab fa-instagram"></i></a>
         </div>
 
         <ul class="list">
             <li><a href="#">FAQs</a></li>
-            <li><a href="#">Services</a></li>
-            <li><a href="#">About Me</a></li>
-            <li><a href="#">Contact</a></li>
+            <li><a href="#services">Services</a></li>
+            <li><a href="#about">About Me</a></li>
+            <li><a href="#contact">Contact</a></li>
             <li><a href="#">Privacy Policy</a></li>
         </ul>
 
@@ -94,8 +538,8 @@
     <script>
         const form = document.getElementById("contactForm");
 
-        form.addEventListener("submit", function(event) {
-            event.preventDefault();  
+        form.addEventListener("submit", function(event){
+            event.preventDefault();
             alert("Message Sent Successfully!");
             form.reset();
         });
